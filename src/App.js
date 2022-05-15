@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import { Box } from "@mui/material";
+import { useState } from "react";
+import "./App.css";
+import DataGridContainer from "./components/Data/DataGridContainer";
+import QueryFormContainer from "./components/Query/QueryFormContainer";
 function App() {
+  const [queries, setQueries] = useState({});
+
+  const submitHandler = (queries) => {
+    setQueries(queries);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+      }}
+    >
+      <QueryFormContainer handleSubmit={submitHandler} />
+      <DataGridContainer queries={queries} />;
+    </Box>
   );
 }
 
